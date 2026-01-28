@@ -10,6 +10,11 @@ const productListElement = document.querySelector('.product-list');
 async function renderList() {
   try {
     const products = await dataSource.getData(category);
+    console.log("Products:", products);
+    if (!products || products.length === 0) {
+      productListElement.innerHTML = "<p>The product could not be loaded.</p>";
+      return;
+    }
     productListElement.innerHTML = products.map(product => `
       <div class="product-card">
         <a href="../product_pages/${product.Id}.html">

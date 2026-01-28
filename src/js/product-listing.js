@@ -21,7 +21,7 @@ async function renderList() {
     `).join('');
   } catch (err) {
     console.error("Error loading products:", err);
-    productListElement.innerHTML = "<p>상품을 불러올 수 없습니다.</p>";
+    productListElement.innerHTML = "<p>The product could not be loaded.</p>";
   }
 }
 

@@ -10,7 +10,7 @@ const productListElement = document.querySelector('.product-list');
 async function renderList() {
   try {
     const products = await dataSource.getData(category);
-    console.log("Products:", products);
+    document.querySelector('h1').textContent = `Top Products: ${category}`;
     if (!products || products.length === 0) {
       productListElement.innerHTML = "<p>The product could not be loaded.</p>";
       return;
@@ -20,7 +20,7 @@ async function renderList() {
         <a href="../product_pages/${product.Id}.html">
           <img src="${product.Images.PrimaryMedium}" alt="${product.Name}" />
           <h2>${product.Name}</h2>
-          <p>${product.ListPrice}</p>
+          <p>${product.SuggestedRetailPrice}</p>
         </a>
       </div>
     `).join('');

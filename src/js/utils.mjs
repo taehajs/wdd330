@@ -23,3 +23,13 @@ export function getParam(param) {
   const urlParams = new URLSearchParams(queryString);
   return urlParams.get(param);
 }
+
+export async function loadHeaderFooter() {
+  const header = await fetch('../partials/header.html');
+  const footer = await fetch('../partials/footer.html');
+  const headerHTML = await header.text();
+  const footerHTML = await footer.text();
+
+  document.getElementById('main-header').innerHTML = headerHTML;
+  document.getElementById('main-footer').innerHTML = footerHTML;
+}

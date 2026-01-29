@@ -94,7 +94,6 @@ p {
   margin-top: -1.7em;
 }
 
-
 .highlight {
   color: var(--tertiary-color);
 }
@@ -113,7 +112,6 @@ button {
 .divider {
   border-bottom: 2px solid var(--primary-color);
 }
-
 
 .cart {
   padding-top: 1em;
@@ -173,7 +171,9 @@ button {
   padding: 0.5em;
   border: 1px solid var(--light-grey);
   max-width: 250px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease; 
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
 .product-card h2,
@@ -189,7 +189,6 @@ button {
 .card__name {
   font-size: 1em;
 }
-
 
 .product-card:hover {
   transform: translateY(-5px);
@@ -207,12 +206,11 @@ button {
   width: 100%;
 }
 
-
 .cart-card {
   display: grid;
   grid-template-columns: 25% auto 15%;
   font-size: var(--small-font);
-  
+
   align-items: center;
 }
 

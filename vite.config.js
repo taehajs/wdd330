@@ -1,23 +1,23 @@
-import { defineConfig } from 'vite';
+import { defineConfig } from "vite";
 
 export default defineConfig({
-  root: 'src', 
+  root: "src",
   build: {
-    outDir: '../dist', 
-    emptyOutDir: true, 
+    outDir: "../dist",
+    emptyOutDir: true,
   },
   server: {
     proxy: {
-      '/products': {
-        target: 'https://wdd330-backend.onrender.com',
+      "/products": {
+        target: "https://wdd330-backend.onrender.com",
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/products/, '/products'),
+        rewrite: (path) => path.replace(/^\/products/, "/products"),
       },
-      '/product': {
-        target: 'https://wdd330-backend.onrender.com',
+      "/product": {
+        target: "https://wdd330-backend.onrender.com",
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/product/, '/product'),
-      }
-    }
-  }
+        rewrite: (path) => path.replace(/^\/product/, "/product"),
+      },
+    },
+  },
 });

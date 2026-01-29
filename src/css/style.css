@@ -1,6 +1,7 @@
 :root {
   --font-body: Arial, Helvetica, sans-serif;
   --font-headline: Haettenschweiler, "Arial Narrow Bold", sans-serif;
+
   /* colors */
   --primary-color: #f0a868;
   --secondary-color: #525b0f;
@@ -28,6 +29,7 @@ body {
 
 img {
   max-width: 100%;
+  display: block;
 }
 
 header {
@@ -40,13 +42,13 @@ p {
   padding: 0.75rem;
 }
 
+
 .logo {
   line-height: 60px;
   width: 245px;
   overflow: hidden;
   display: flex;
   font-size: 30px;
-  text-align: right;
   font-family: var(--font-headline);
 }
 
@@ -57,7 +59,7 @@ p {
 
 .logo a {
   text-decoration: none;
-  color: var(--font-body);
+  color: var(--dark-grey);
 }
 
 .hero {
@@ -75,12 +77,10 @@ p {
   font-size: var(--small-font);
   width: 110px;
   height: 80px;
-
   flex-direction: column;
-  align-items: flex-end;
-  box-shadow: 1px 1px 4px var(--light-grey);
   justify-content: center;
   align-items: center;
+  box-shadow: 1px 1px 4px var(--light-grey);
   line-height: 1;
 }
 
@@ -94,7 +94,7 @@ p {
   margin-top: -1.7em;
 }
 
-/* utility classes */
+
 .highlight {
   color: var(--tertiary-color);
 }
@@ -114,9 +114,7 @@ button {
   border-bottom: 2px solid var(--primary-color);
 }
 
-/* End utility classes */
 
-/* Cart icon styles */
 .cart {
   padding-top: 1em;
   position: relative;
@@ -131,18 +129,18 @@ button {
   fill: gray;
 }
 
-/* End cart icon styles */
+
 
 .mission {
   position: absolute;
   top: 1rem;
   left: 0;
   right: 0;
-  line-height: 1.3;
   width: 100%;
   background-color: var(--dark-grey);
   color: var(--light-grey);
   opacity: 0.8;
+  line-height: 1.3;
 }
 
 .mission p {
@@ -151,47 +149,83 @@ button {
   text-align: center;
 }
 
+
+
 .products {
   margin-top: 2rem;
   padding: 1rem;
 }
 
 .product-list {
-  display: flex;
-  flex-flow: row wrap;
-  list-style-type: none;
-  justify-content: center;
+  list-style: none;
+  margin: 1.5rem 0;
+  padding: 0;
+
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+  justify-items: center;
 }
 
 .product-list a {
   text-decoration: none;
   color: var(--dark-grey);
+  display: block;
+  height: 100%;
 }
 
-/* Styles for product lists */
+
+
 .product-card {
-  flex: 1 1 45%;
-  margin: 0.25em;
-  padding: 0.5em;
+  width: 100%;
+  max-width: 280px;
+  padding: 0.75em;
+
+  background-color: #fff;
   border: 1px solid var(--light-grey);
-  max-width: 250px;
+  border-radius: 8px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
+}
+
+.product-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 6px;
+  margin-bottom: 0.5em;
 }
 
 .product-card h2,
 .product-card h3,
 .product-card p {
-  margin: 0.5em 0;
+  margin: 0.4em 0;
 }
 
 .card__brand {
   font-size: var(--small-font);
+  color: #666;
 }
 
 .card__name {
   font-size: 1em;
+  line-height: 1.3;
 }
 
-/* End product list card */
+.product-card__price {
+  font-weight: bold;
+  color: var(--secondary-color);
+}
+
 
 .product-detail {
   padding: 1em;
@@ -203,17 +237,16 @@ button {
   width: 100%;
 }
 
-/* Start cart list card styles */
+
 .cart-card {
   display: grid;
   grid-template-columns: 25% auto 15%;
   font-size: var(--small-font);
-  /* max-height: 120px; */
   align-items: center;
 }
 
 .cart-card__image {
-  grid-row: 1/3;
+  grid-row: 1 / 3;
   grid-column: 1;
 }
 
@@ -241,6 +274,7 @@ button {
   grid-column: 3;
 }
 
+
 @media screen and (min-width: 500px) {
   body {
     max-width: 1080px;
@@ -256,6 +290,14 @@ button {
     grid-template-columns: 150px auto 15%;
   }
 }
+
+@media screen and (max-width: 500px) {
+  .product-card img {
+    height: 160px;
+  }
+}
+
+
 
 footer {
   font-size: var(--small-font);

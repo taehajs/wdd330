@@ -1,28 +1,35 @@
-import { getLocalStorage } from "./utils.mjs";
-
-function renderCartContents() {
-  const cartItems = getLocalStorage("so-cart");
-  const htmlItems = cartItems.map((item) => cartItemTemplate(item));
-  document.querySelector(".product-list").innerHTML = htmlItems.join("");
+function addToCart(item) {
+  let cart = JSON.parse(localStorage.getItem('cart')) || {};
+  cart[item] = (cart[item] || 0) + 1;
+  localStorage.setItem('cart', JSON.stringify(cart));
+  renderCart();
 }
 
-function cartItemTemplate(item) {
-  const newItem = `<li class="cart-card divider">
-  <a href="#" class="cart-card__image">
-    <img
-      src="${item.Image}"
-      alt="${item.Name}"
-    />
-  </a>
-  <a href="#">
-    <h2 class="card__name">${item.Name}</h2>
-  </a>
-  <p class="cart-card__color">${item.Colors[0].ColorName}</p>
-  <p class="cart-card__quantity">qty: 1</p>
-  <p class="cart-card__price">$${item.FinalPrice}</p>
-</li>`;
-
-  return newItem;
+function removeFromCart(item) {
+  let cart = JSON.parse(localStorage.getItem('cart')) || {};
+  if (cart[item]) {
+    cart[item] -= 1;
+    if (cart[item] <= 0) {
+      delete cart[item];
+    }
+    localStorage.setItem('cart', JSON.stringify(cart));
+    renderCart();
+  }
 }
 
-renderCartContents();
+function renderCart() {
+  let cart = JSON.parse(localStorage.getItem('cart')) || {};
+  const container = document.getElementById('cart');
+  if (!container) return;
+
+  container.innerHTML = Object.entries(cart)
+    .map(
+      ([item, qty]) =>
+        `<p>${item} x ${qty} 
+          <button onclick="removeFromCart('${item}')">Remove</button>
+        </p>`
+    )
+    .join('');
+}
+
+renderCart();
